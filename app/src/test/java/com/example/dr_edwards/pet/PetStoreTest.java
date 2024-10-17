@@ -2,6 +2,9 @@ package com.example.dr_edwards.pet;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -38,5 +41,21 @@ public class PetStoreTest {
 
         // Assert
         assertEquals(10, actualCat);
+    }
+
+    @Test
+    public void testBuyPet_cat() {
+        // Arrange
+        Pet cat = new Cat();
+        List<Pet> pets = new ArrayList<>();
+        pets.add(cat);
+        PetStore petStore = new PetStore(pets, new PetValueCalculator(), new CashRegister(10));
+        int money = 10;
+
+        // Act
+        Pet actual = petStore.buyPet(money);
+
+        // Assert
+        assertEquals(cat, actual);
     }
 }
